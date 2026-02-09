@@ -1,46 +1,41 @@
+const basePath = import.meta.env.BASE_URL
+
 const partners = [
-  'Shimano', 'SRAM', 'Continental', 'Schwalbe', 'Park Tool',
-  'Campagnolo', 'Mavic', 'DT Swiss', 'Brooks', 'Chris King',
+  { name: 'Populous Hotel', image: `${basePath}assets/partner-populous.png` },
+  { name: 'Pine', image: `${basePath}assets/partner-pine.png` },
+  { name: 'Bikes', image: `${basePath}assets/partner-bikes.png` },
+  { name: 'Rail Spur', image: `${basePath}assets/partner-railspur.png` },
+  { name: 'Building', image: `${basePath}assets/partner-building.png` },
 ]
 
 export default function PartnerCarousel() {
   return (
-    <section id="partners" className="py-16 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <span className="text-accent font-semibold text-sm uppercase tracking-wider">Trusted Partners</span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-primary mt-2 mb-4">We Work With the Best</h2>
-          <p className="text-text-secondary max-w-2xl mx-auto">
-            We use only genuine parts from industry-leading brands to ensure quality and reliability.
-          </p>
-        </div>
-      </div>
+    <section className="bg-white border-t-[6px] border-primary pt-16 pb-20 px-6">
+      <div className="max-w-[1024px] mx-auto">
+        <h2 className="font-black text-primary text-4xl md:text-5xl uppercase text-center mb-12">
+          Our Partners
+        </h2>
 
-      <div className="relative">
-        <div className="flex animate-scroll gap-12 w-max">
-          {[...partners, ...partners].map((partner, i) => (
+        <div className="flex flex-wrap justify-center gap-8">
+          {partners.map((partner) => (
             <div
-              key={`${partner}-${i}`}
-              className="flex items-center justify-center h-16 px-8 bg-gray-50 rounded-xl border border-gray-100 flex-shrink-0"
+              key={partner.name}
+              className="bg-surface border-[3px] border-border w-[248px] h-[192px] flex flex-col items-center justify-center gap-4"
             >
-              <span className="text-lg font-bold text-text-secondary/60 whitespace-nowrap">{partner}</span>
+              <div className="w-[178px] h-[86px] flex items-center justify-center overflow-hidden">
+                <img
+                  src={partner.image}
+                  alt={partner.name}
+                  className="max-w-full max-h-full object-contain"
+                />
+              </div>
+              <span className="font-bold text-dark text-sm uppercase tracking-wider">
+                {partner.name}
+              </span>
             </div>
           ))}
         </div>
       </div>
-
-      <style>{`
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-scroll {
-          animation: scroll 30s linear infinite;
-        }
-        .animate-scroll:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
     </section>
   )
 }

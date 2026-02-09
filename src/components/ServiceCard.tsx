@@ -1,25 +1,38 @@
-import type { LucideIcon } from 'lucide-react'
-
 interface ServiceCardProps {
-  icon: LucideIcon
+  image: string
+  iconSrc: string
   title: string
   description: string
-  price: string
 }
 
-export default function ServiceCard({ icon: Icon, title, description, price }: ServiceCardProps) {
+export default function ServiceCard({ image, iconSrc, title, description }: ServiceCardProps) {
   return (
-    <div className="group bg-white rounded-2xl p-6 border border-gray-100 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300">
-      <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-        <Icon className="h-6 w-6 text-accent" />
+    <div className="bg-white border-[5px] border-primary rounded-[14px] overflow-hidden flex flex-col">
+      {/* Image with icon overlay */}
+      <div className="relative h-[320px] overflow-hidden">
+        <img src={image} alt={title} className="w-full h-full object-cover" />
+        <div className="absolute bottom-4 left-4 w-[70px] h-[70px] bg-white/95 border-[3px] border-accent flex items-center justify-center">
+          <img src={iconSrc} alt="" className="w-8 h-8" />
+        </div>
       </div>
-      <h3 className="text-lg font-bold text-primary mb-2">{title}</h3>
-      <p className="text-text-secondary text-sm leading-relaxed mb-4">{description}</p>
-      <div className="flex items-center justify-between">
-        <span className="text-accent font-bold text-lg">{price}</span>
-        <a href="#contact" className="text-sm font-medium text-text-secondary hover:text-accent transition-colors">
-          Book now &rarr;
-        </a>
+
+      {/* Card content */}
+      <div className="border-b-2 border-border px-6 py-6 flex-1">
+        <h3 className="font-black text-primary text-3xl uppercase tracking-tight mb-2">
+          {title}
+        </h3>
+        <p className="font-medium text-text-secondary text-base leading-relaxed">
+          {description}
+        </p>
+      </div>
+
+      {/* Button */}
+      <div className="px-6 py-6">
+        <button className="w-full bg-accent border-[3px] border-primary rounded-lg py-3 shadow-lg">
+          <span className="font-black text-white text-base uppercase tracking-wider">
+            Learn more
+          </span>
+        </button>
       </div>
     </div>
   )

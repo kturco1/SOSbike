@@ -1,22 +1,18 @@
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
+import Header from './components/Header'
 import Services from './components/Services'
-import About from './components/About'
-import Gallery from './components/Gallery'
-import PartnerCarousel from './components/PartnerCarousel'
+import CTABanner from './components/CTABanner'
 import ContactForm from './components/ContactForm'
+import PartnerCarousel from './components/PartnerCarousel'
 import Footer from './components/Footer'
 
 function App() {
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <Hero />
+    <div className="min-h-screen bg-surface">
+      <Header />
       <Services />
-      <About />
-      <Gallery />
-      <PartnerCarousel />
+      <CTABanner />
       <ContactForm />
+      <PartnerCarousel />
       <Footer />
     </div>
   )
